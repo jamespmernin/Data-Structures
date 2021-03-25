@@ -209,7 +209,7 @@ class DoublyLinkedList {
         }
         return current;
     }
-    set (index, value) { // change the value of the node at the given index, return whether it succeeded
+    set(index, value) { // change the value of the node at the given index, return whether it succeeded
         let foundNode = this.get(index);
         if (foundNode) {
             foundNode.value = value;
@@ -217,7 +217,7 @@ class DoublyLinkedList {
         }
         return false;
     }
-    insert (index, value) { // insert the value at the node with the given index, return whether it succeeded
+    insert(index, value) { // insert the value at the node with the given index, return whether it succeeded
         if (index < 0 || index > this.length) return false;
         if (index === 0) return !!this.unshift(value);
         if (index === this.length) return !!this.push(value);
@@ -228,5 +228,8 @@ class DoublyLinkedList {
         newNode.next = afterNode, afterNode.prev = newNode; // link on both sides
         this.length++;
         return true;
+    }
+    remove(index) { // remove the node at the given index, return that node
+        return;
     }
 }
