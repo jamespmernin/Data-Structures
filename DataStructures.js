@@ -257,3 +257,19 @@ class DoublyLinkedList {
         return this;
     }
 }
+
+// Stack
+class StackNode {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Stack {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+}
