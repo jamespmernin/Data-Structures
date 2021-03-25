@@ -99,12 +99,13 @@ class SinglyLinkedList {
         if (index === 0) return this.shift(); // shift does the job
         if (index === this.length - 1) return this.pop(); // pop does the job
         let prev = this.get(index - 1);
-        let removed = prev.next;
-        prev.next = removed.next;
+        let removedNode = prev.next;
+        prev.next = removedNode.next;
         this.length--;
-        return removed;
+        return removedNode;
     }
     reverse() { // reverse the direction of the list and return that list
+        if (!this.head) return null;
         let node = this.head;
         this.head = this.tail;
         this.tail = node;
@@ -230,6 +231,29 @@ class DoublyLinkedList {
         return true;
     }
     remove(index) { // remove the node at the given index, return that node
-        return;
+        if (index < 0 || index >= this.length) return undefined;
+        if (index === 0) return this.shift();
+        if (index === this.length - 1) return this.pop();
+        let removedNode = this.get(index);
+        let beforeNode = removedNode.prev;
+        let afterNode = removedNode.next;
+        beforeNode.next = afterNode;
+        afterNode.prev = beforeNode;
+        removedNode.prev = null, removedNode.next = null; // clear out links
+        this.length--;
+        return removedNode;
+    }
+    reverse() { // reverse the direction of the list and return that list
+        if (!this.head) return null;
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        while (node) {
+            let hold = node.next;
+            node.next = node.prev;
+            node.prev = hold;
+            node = node.prev;
+        }
+        return this;
     }
 }
