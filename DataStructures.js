@@ -1,3 +1,8 @@
+/*
+ * JavaScript Data Structures
+ * James Mernin
+ */
+
 // Singly Linked Lists
 class SingleNode {
     constructor(val) {
