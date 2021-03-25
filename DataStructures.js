@@ -119,3 +119,33 @@ class SinglyLinkedList {
         return this;
     }
 }
+
+// Doubly Linked List
+class DoubleNode {
+    constructor(val) {
+        this.val = val;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    push(val) { // push a new node to the tail of the list and return the list
+        let newNode = new DoubleNode(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+    }
+}
