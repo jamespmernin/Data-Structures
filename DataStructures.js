@@ -137,7 +137,7 @@ class DoublyLinkedList {
     }
     push(val) { // push a new node to the tail of the list and return the list
         let newNode = new DoubleNode(val);
-        if (!this.head) {
+        if (!this.head) { // special case when list is empty
             this.head = newNode;
             this.tail = newNode;
         } else {
@@ -147,5 +147,19 @@ class DoublyLinkedList {
         }
         this.length++;
         return this;
+    }
+    pop() {
+        if(!this.head) return undefined; // special case when list is empty
+        let poppedNode = this.tail;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = poppedNode.prev;
+            this.tail.next = null;
+            poppedNode.prev = null;
+        }
+        this.length--;
+        return poppedNode;
     }
 }
