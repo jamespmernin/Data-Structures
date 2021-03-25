@@ -5,8 +5,8 @@
 
 // Singly Linked Lists
 class SingleNode {
-    constructor(val) {
-        this.val = val;
+    constructor(value) {
+        this.value = value;
         this.next = null;
     }
 }
@@ -17,8 +17,8 @@ class SinglyLinkedList {
         this.tail = null;
         this.length = 0;
     }
-    push(val) { // push a new node to the tail of the list and return the list
-        let newNode = new SingleNode(val);
+    push(value) { // push a new node to the tail of the list and return the list
+        let newNode = new SingleNode(value);
         if(!this.head) { // linked list is empty
             this.head = newNode;
             this.tail = this.head;
@@ -42,8 +42,8 @@ class SinglyLinkedList {
         this.length--;
         return current;
     }
-    unshift(val) { // add a node at the head of the list and return the list
-        let newNode = new SingleNode(val);
+    unshift(value) { // add a node at the head of the list and return the list
+        let newNode = new SingleNode(value);
         if (!this.head) {
             this.head = newNode;
             this.tail = this.head;
@@ -74,19 +74,19 @@ class SinglyLinkedList {
         }
         return current;
     }
-    set(index, val) { // change the value of the node at the given index, return whether it succeeded
+    set(index, value) { // change the value of the node at the given index, return whether it succeeded
         let foundNode = this.get(index);
         if (foundNode) {
-            foundNode.val = val;
+            foundNode.value = value;
             return true;
         }
         return false;
     }
-    insert(index, val) { // insert the value at the node with the given index, return whether it succeeded
+    insert(index, value) { // insert the value at the node with the given index, return whether it succeeded
         if (index < 0 || index > this.length) return false; // index is out of bounds
-        if (index === 0) return !!this.unshift(val); // unshift does the job
-        if (index === this.length) return !!this.push(val); // push does the job, !! returns boolean
-        let newNode = new SingleNode(val);
+        if (index === 0) return !!this.unshift(value); // unshift does the job
+        if (index === this.length) return !!this.push(value); // push does the job, !! returns boolean
+        let newNode = new SingleNode(value);
         let prev = this.get(index - 1);
         let temp = prev.next;
         prev.next = newNode;
@@ -122,8 +122,8 @@ class SinglyLinkedList {
 
 // Doubly Linked List
 class DoubleNode {
-    constructor(val) {
-        this.val = val;
+    constructor(value) {
+        this.value = value;
         this.prev = null;
         this.next = null;
     }
@@ -135,8 +135,8 @@ class DoublyLinkedList {
         this.tail = null;
         this.length = 0;
     }
-    push(val) { // push a new node to the tail of the list and return the list
-        let newNode = new DoubleNode(val);
+    push(value) { // push a new node to the tail of the list and return the list
+        let newNode = new DoubleNode(value);
         if (!this.head) { // special case when list is empty
             this.head = newNode;
             this.tail = newNode;
@@ -162,8 +162,8 @@ class DoublyLinkedList {
         this.length--;
         return poppedNode;
     }
-    unshift(val) { // add a node at the head of the list and return the list
-        let newNode = new DoubleNode(val);
+    unshift(value) { // add a node at the head of the list and return the list
+        let newNode = new DoubleNode(value);
         if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
@@ -208,5 +208,25 @@ class DoublyLinkedList {
             }
         }
         return current;
+    }
+    set (index, value) { // change the value of the node at the given index, return whether it succeeded
+        let foundNode = this.get(index);
+        if (foundNode) {
+            foundNode.value = value;
+            return true;
+        }
+        return false;
+    }
+    insert (index, value) { // insert the value at the node with the given index, return whether it succeeded
+        if (index < 0 || index > this.length) return false;
+        if (index === 0) return !!this.unshift(value);
+        if (index === this.length) return !!this.push(value);
+        let newNode = new DoubleNode(value);
+        let beforeNode = this.get(index - 1);
+        let afterNode = beforeNode.next;
+        beforeNode.next = newNode, newNode.prev = beforeNode; // link on both sides
+        newNode.next = afterNode, afterNode.prev = newNode; // link on both sides
+        this.length++;
+        return true;
     }
 }
