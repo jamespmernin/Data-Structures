@@ -18,7 +18,7 @@ class SinglyLinkedList {
         this.length = 0;
     }
     push(val) { // push a new node to the tail of the list and return the list
-        let newNode = new Node(val);
+        let newNode = new SingleNode(val);
         if(!this.head) { // linked list is empty
             this.head = newNode;
             this.tail = this.head;
