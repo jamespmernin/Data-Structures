@@ -84,8 +84,8 @@ class SinglyLinkedList {
     }
     insert(index, val) { // insert the value at the node with the given index, return whether it succeeded
         if (index < 0 || index > this.length) return false; // index is out of bounds
-        if (index === this.length) return !!this.push(val); // push does the job, !! returns boolean
         if (index === 0) return !!this.unshift(val); // unshift does the job
+        if (index === this.length) return !!this.push(val); // push does the job, !! returns boolean
         let newNode = new SingleNode(val);
         let prev = this.get(index - 1);
         let temp = prev.next;
@@ -93,5 +93,15 @@ class SinglyLinkedList {
         newNode.next = temp;
         this.length++;
         return true;
+    }
+    remove(index) { // remove the node at the given index, return that node
+        if (index < 0 || index >= this.length) return undefined; // index out of bounds
+        if (index === 0) return this.shift(); // shift does the job
+        if (index === this.length - 1) return this.pop(); // pop does the job
+        let prev = this.get(index - 1);
+        let removed = prev.next;
+        prev.next = removed.next;
+        this.length--;
+        return removed;
     }
 }
