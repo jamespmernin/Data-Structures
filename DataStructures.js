@@ -17,7 +17,7 @@ class SinglyLinkedList {
         this.tail = null;
         this.length = 0;
     }
-    push(val) {
+    push(val) { // push a new node to the tail of the list and return the list
         let newNode = new Node(val);
         if(!this.head) { // linked list is empty
             this.head = newNode;
@@ -29,7 +29,7 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
-    pop() {
+    pop() { // pop a node off of the tail of the list and return it
         if (!this.head) return undefined;
         let current = this.head;
         let newTail = current;
@@ -41,5 +41,15 @@ class SinglyLinkedList {
         this.tail.next = null;
         this.length--;
         return current;
+    }
+    shift() { // delete the node at the head of the list and return it
+        if (!this.head) return undefined;
+        let currentHead = this.head;
+        this.head = currentHead.next;
+        this.length--;
+        if (this.length === 0) {
+            this.tail = null;
+        }
+        return currentHead;
     }
 }
