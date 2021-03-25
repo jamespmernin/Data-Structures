@@ -148,7 +148,7 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
-    pop() {
+    pop() { // pop a node off of the tail of the list and return it
         if(!this.head) return undefined; // special case when list is empty
         let poppedNode = this.tail;
         if (this.length === 1) {
@@ -161,5 +161,32 @@ class DoublyLinkedList {
         }
         this.length--;
         return poppedNode;
+    }
+    unshift(val) { // add a node at the head of the list and return the list
+        let newNode = new DoubleNode(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+    shift() { // delete the node at the head of the list and return it
+        if (!this.head) return undefined;
+        let oldHead = this.head;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = oldHead.next;
+            this.head.prev = null;
+            oldHead.next = null;
+        }
+        this.length--;
+        return oldHead;
     }
 }
