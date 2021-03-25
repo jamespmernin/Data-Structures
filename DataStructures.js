@@ -82,4 +82,16 @@ class SinglyLinkedList {
         }
         return false;
     }
+    insert(index, val) { // insert the value at the node with the given index, return whether it succeeded
+        if (index < 0 || index > this.length) return false; // index is out of bounds
+        if (index === this.length) return !!this.push(val); // push does the job, !! returns boolean
+        if (index === 0) return !!this.unshift(val); // unshift does the job
+        let newNode = new SingleNode(val);
+        let prev = this.get(index - 1);
+        let temp = prev.next;
+        prev.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+    }
 }
