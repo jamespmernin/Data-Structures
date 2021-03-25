@@ -42,6 +42,18 @@ class SinglyLinkedList {
         this.length--;
         return current;
     }
+    unshift(val) { // add a node at the head of the list and return the list
+        let newNode = new SingleNode(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
     shift() { // delete the node at the head of the list and return it
         if (!this.head) return undefined;
         let currentHead = this.head;
