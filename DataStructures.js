@@ -31,16 +31,16 @@ class SinglyLinkedList {
     }
     pop() { // pop a node off of the tail of the list and return it
         if (!this.head) return undefined;
-        let current = this.head;
-        let newTail = current;
-        while(current.next) {
-            newTail = current;
-            current = current.next;
+        let temp = this.head;
+        let newTail = temp;
+        while(temp.next) {
+            newTail = temp;
+            temp = temp.next;
         }
         this.tail = newTail;
         this.tail.next = null;
         this.length--;
-        return current;
+        return temp;
     }
     unshift(value) { // add a node at the head of the list and return the list
         let newNode = new SingleNode(value);
@@ -56,13 +56,13 @@ class SinglyLinkedList {
     }
     shift() { // delete the node at the head of the list and return it
         if (!this.head) return undefined;
-        let currentHead = this.head;
-        this.head = currentHead.next;
+        let temp = this.head;
+        this.head = temp.next;
         this.length--;
         if (this.length === 0) {
             this.tail = null;
         }
-        return currentHead;
+        return temp;
     }
     get(index) { // return the node at the index provided
         if (index < 0 || index >= this.length) return null; // special case when index is out of bounds
@@ -296,7 +296,7 @@ class Stack {
     }
 }
 
-// Queue, this is a test
+// Queue
 class QueueNode {
     constructor(value) {
         this.value = value;
@@ -309,5 +309,26 @@ class Queue {
         this.first = null;
         this.last = null;
         this.size = 0;
+    }
+    enqueue(value) { // add to tail of linked list
+        let newNode = new Node(value);
+        if (!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            this.last.next = newNode;
+            this.last = newNode;
+        }
+        return ++this.size;
+    }
+    dequeue() { // remove from head of linked list
+        if (!this.first) return null;
+        let temp = this.first;
+        if (this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
     }
 }
