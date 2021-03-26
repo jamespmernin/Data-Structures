@@ -370,4 +370,18 @@ class BST {
             }
         }
     }
+    find(value) {
+        if (!this.root) return undefined;
+        let current = this.root;
+        let found = false;
+        while (current && !found) {
+            if (value < current.value) current = current.left;
+            else if (value > current.value) current = current.right;
+            else return current;
+        }
+        return undefined;
+    }
+    contains(value) {
+        return this.find(value) !== undefined;
+    }
 }
