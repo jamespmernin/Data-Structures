@@ -471,4 +471,43 @@ class MinBinaryHeap {
             index = parentIndex;
         }
     }
+    remove() {
+        const max = this.values[0];
+        const end = this.values.pop();
+        if (this.values.length > 0) {
+            this.values[0] = end;
+            this.bubbleDown();
+        }
+        return max;
+    }
+    bubbleDown() {
+        let i = 0;
+        const element = this.values[0];
+        const length = this.values.length;
+        while(true) {
+            let l = 2 * i + 1;
+            let r = l + 1;
+            let left, right;
+            let swap = null;
+            if (l < length) {
+                left = this.values[l];
+                if (left > element) {
+                    swap = l;
+                }
+            }
+            if (r < length) {
+                right = this.values[r];
+                if (
+                    (swap === null && right > element) ||
+                    (swap !== null && right > left)
+                ) {
+                    swap = r;
+                }
+            }
+            if (swap === null) break;
+            this.values[i] = this.values[swap];
+            this.values[swap] = element;
+            i = swap;
+        }
+    }
 }
