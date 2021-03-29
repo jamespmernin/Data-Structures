@@ -384,4 +384,17 @@ class BST {
     contains(value) {
         return this.find(value) !== undefined;
     }
+    bfs() {
+        let node = this.root;
+        let data = new Queue;
+        let queue = new Queue;
+        queue.enqueue(node);
+        while(queue.length) { // because an empty queue is falsy
+            node = queue.dequeue();
+            data.enqueue(node);
+            if (node.left) queue.enqueue(node.left);
+            if (node.right) queue.enqueue(node.right);
+        }
+        return data;
+    }
 }
