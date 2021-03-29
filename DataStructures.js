@@ -408,9 +408,23 @@ class BST {
         return data;
     }
     dfsPostOrder() { // depth first search, post-order
-
+        let data = new Queue;
+        function traverse(node) {
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+            data.enqueue(node);
+        }
+        traverse(this.root);
+        return data;
     }
     dfsInOrder() { // depth first search, in-order
-
+        let data = new Queue;
+        function traverse(node) {
+            if (node.left) traverse(node.left);
+            data.enqueue(node);
+            if (node.right) traverse(node.right);
+        }
+        traverse(this.root);
+        return data;
     }
 }
