@@ -428,3 +428,9 @@ class BST {
         return data;
     }
 }
+
+class MaxBinaryHeap {
+    constructor() {
+        this.values = [];
+    }
+}
