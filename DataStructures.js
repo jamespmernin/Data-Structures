@@ -384,17 +384,33 @@ class BST {
     contains(value) {
         return this.find(value) !== undefined;
     }
-    bfs() {
+    bfs() { // breadth first search
         let node = this.root;
         let data = new Queue;
-        let queue = new Queue;
-        queue.enqueue(node);
-        while(queue.length) { // because an empty queue is falsy
-            node = queue.dequeue();
+        let visited = new Queue;
+        visited.enqueue(node);
+        while(visited.length) { // because an empty queue is falsy
+            node = visited.dequeue();
             data.enqueue(node);
-            if (node.left) queue.enqueue(node.left);
-            if (node.right) queue.enqueue(node.right);
+            if (node.left) visited.enqueue(node.left);
+            if (node.right) visited.enqueue(node.right);
         }
         return data;
+    }
+    dfsPreOrder() { // depth first search, pre-order
+        let data = new Queue;
+        function traverse(node) {
+            data.enqueue(node);
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+        }
+        traverse(this.root);
+        return data;
+    }
+    dfsPostOrder() { // depth first search, post-order
+
+    }
+    dfsInOrder() { // depth first search, in-order
+
     }
 }
