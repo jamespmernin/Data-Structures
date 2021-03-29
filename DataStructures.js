@@ -401,8 +401,8 @@ class BST {
         let data = new Queue;
         function traverse(node) {
             data.enqueue(node);
-            if (node.left) traverse(node.left);
-            if (node.right) traverse(node.right);
+            node.left && traverse(node.left); // short-circuit version of conditional
+            node.right && traverse(node.right);
         }
         traverse(this.root);
         return data;
@@ -410,8 +410,8 @@ class BST {
     dfsPostOrder() { // depth first search, post-order
         let data = new Queue;
         function traverse(node) {
-            if (node.left) traverse(node.left);
-            if (node.right) traverse(node.right);
+            node.left && traverse(node.left);
+            node.right && traverse(node.right);
             data.enqueue(node);
         }
         traverse(this.root);
@@ -420,9 +420,9 @@ class BST {
     dfsInOrder() { // depth first search, in-order
         let data = new Queue;
         function traverse(node) {
-            if (node.left) traverse(node.left);
+            node.left && traverse(node.left);
             data.enqueue(node);
-            if (node.right) traverse(node.right);
+            node.right && traverse(node.right);
         }
         traverse(this.root);
         return data;
