@@ -645,6 +645,14 @@ class HashTable {
         return;
     }
     get(key) {
-
+        let index = this._hash(key);
+        if (this.keyMap[index]) {
+            for (let i = 0; i < this.keyMap[index].length; i++) {
+                if (this.keyMap[index][i][0] === key) {
+                    return this.keyMap[index][i][1];
+                }
+            }
+        }
+        return undefined;
     }
 }
