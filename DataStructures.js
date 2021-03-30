@@ -429,6 +429,7 @@ class BST {
     }
 }
 
+// Heaps
 class MaxBinaryHeap {
     constructor() {
         this.values = [];
@@ -620,6 +621,7 @@ class PriorityQueue {
     }
 }
 
+// Hashing
 class HashTable {
     constructor(size=53) {
         this.keyMap = new Array(size);
@@ -680,5 +682,12 @@ class HashTable {
             }
         }
         return valuesArray;
+    }
+}
+
+// Graphs
+class Graph {
+    constructor() {
+        this.adjacencyList = {};
     }
 }
