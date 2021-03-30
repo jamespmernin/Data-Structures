@@ -622,10 +622,12 @@ class PriorityQueue {
 
 function hash(key, length) { // test
     const ALPHAMOD = 96;
+    let WEIRD_PRIME = 31;
     let total = 0;
-    for (let char of key) {
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+        let char = key[i];
         let value = char.charCodeAt(0) - ALPHAMOD;
-        total = (total + value) % length;
+        total = (total * WEIRD_PRIME + value) % length;
     }
     return total;
 }
