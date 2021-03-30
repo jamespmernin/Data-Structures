@@ -620,7 +620,7 @@ class PriorityQueue {
     }
 }
 
-function hash(key, length) {
+function hash(key, length) { // test
     const ALPHAMOD = 96;
     let total = 0;
     for (let char of key) {
