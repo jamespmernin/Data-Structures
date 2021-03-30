@@ -619,3 +619,13 @@ class PriorityQueue {
         }
     }
 }
+
+function hash(key, length) {
+    const ALPHAMOD = 96;
+    let total = 0;
+    for (let char of key) {
+        let value = char.charCodeAt(0) - ALPHAMOD;
+        total = (total + value) % length;
+    }
+    return total;
+}
