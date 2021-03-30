@@ -1,4 +1,4 @@
-# JavaScript-Data-Structures
+# Data-Structures
 Practice implementing data structures
 
 I am using this repository as a place to store the work I am doing to learn data structures.
