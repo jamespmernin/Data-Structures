@@ -708,4 +708,20 @@ class Graph {
         this.adjacencyList[v1] = this.adjacencyList[v1].filter(v => v !== v2);
         this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v !== v1);
     }
+    dfsRecursive(start) {
+        const result = [];
+        const visited = {};
+        const adjacencyList = this.adjacencyList;
+        (function dfsHelper(vertex) {
+            if(!vertex) return null;
+            visited[vertex] = true;
+            result.push(vertex);
+            adjacencyList[vertex].forEach(neighbor => {
+                if(!visited[neighbor]) {
+                    return dfsHelper(neighbor);
+                }
+            })
+        })(start);
+        return result;
+    }
 }
