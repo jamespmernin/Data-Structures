@@ -724,4 +724,23 @@ class Graph {
         })(start);
         return result;
     }
+    dfsIterative(start) {
+        const stack = new Stack;
+        stack.push(start);
+        const result = [];
+        const visited = {};
+        visited[start] = true;
+        let currentVertex;
+        while(stack.length) {
+            currentVertex = stack.pop();
+            result.push(currentVertex);
+            this.adjacencyList[currentVertex].forEach(neighbor => {
+                if(!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    stack.push(neighbor);
+                }
+            });
+        }
+        return result;
+    }
 }
