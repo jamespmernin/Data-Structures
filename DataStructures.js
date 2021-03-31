@@ -783,7 +783,7 @@ class WeightedGraph {
         return;
     }
     dijkstra(start, finish) { // calculate shortest path
-        const nodes = new SimplePriorityQueue();
+        const nodes = new PriorityQueue();
         const distances = {};
         const previous = {};
         let smallest;
