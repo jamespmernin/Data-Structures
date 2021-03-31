@@ -763,3 +763,17 @@ class Graph {
         return result;
     }
 }
+
+// Weighted Graph (Dijkstra's Algorithm)
+class WeightedGraph {
+    constructor() {
+        this.adjacencyList = {};
+    }
+    addVertex(vertex) {
+        if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+    }
+    addEdge(v1, v2, w) {
+        this.adjacencyList[v1].push({node: v2, weight: w});
+        this.adjacencyList[v2].push({node: v1, weight: w});
+    }
+}
