@@ -692,6 +692,7 @@ class Graph {
     }
     addVertex(vertex) {
         if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+        return;
     }
     removeVertex(vertex) {
         while(this.adjacencyList[vertex].length) {
@@ -699,14 +700,17 @@ class Graph {
             this.removeEdge(vertex, adjacentVertex);
         }
         delete this.adjacencyList[vertex];
+        return;
     }
     addEdge(v1, v2) {
         this.adjacencyList[v1].push(v2);
         this.adjacencyList[v2].push(v1);
+        return;
     }
     removeEdge(v1, v2) {
         this.adjacencyList[v1] = this.adjacencyList[v1].filter(v => v !== v2);
         this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v !== v1);
+        return;
     }
     dfsRecursive(start) {
         const result = [];
@@ -771,9 +775,29 @@ class WeightedGraph {
     }
     addVertex(vertex) {
         if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+        return;
     }
     addEdge(v1, v2, w) {
         this.adjacencyList[v1].push({node: v2, weight: w});
         this.adjacencyList[v2].push({node: v1, weight: w});
+        return;
+    }
+}
+
+class SimplePriorityQueue {
+    constructor() {
+        this.values = [];
+    }
+    enqueue(value, priority) {
+        this.values.push({value, priority});
+        this.sort();
+        return;
+    }
+    dequeue() {
+        return this.values.shift();
+    }
+    sort() {
+        this.values.sort((a, b) => a.priority - b.priority);
+        return;
     }
 }
