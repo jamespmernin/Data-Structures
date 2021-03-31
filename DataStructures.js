@@ -731,13 +731,32 @@ class Graph {
         const visited = {};
         visited[start] = true;
         let currentVertex;
-        while(stack.length) {
+        while(stack.size) {
             currentVertex = stack.pop();
             result.push(currentVertex);
             this.adjacencyList[currentVertex].forEach(neighbor => {
                 if(!visited[neighbor]) {
                     visited[neighbor] = true;
                     stack.push(neighbor);
+                }
+            });
+        }
+        return result;
+    }
+    bfs(start) {
+        let queue = new Queue;
+        queue.enqueue(start);
+        const result = [];
+        const visited = {};
+        visited[start] = true;
+        let currentVertex;
+        while(queue.size) {
+            currentVertex = queue.dequeue();
+            result.push(currentVertex);
+            this.adjacencyList[current].forEach(neighbor => {
+                if(!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.enqueue(neighbor);
                 }
             });
         }
